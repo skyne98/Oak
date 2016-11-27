@@ -73,5 +73,37 @@ namespace Oak.Virtualizer.Classes
         {
             _blockSpaceContainer.UnallocateBlockSpace(blockSpace);
         }
+
+        #region Abstract Getters/Setters
+        public IFileIO GetFileIO()
+        {
+            return _fileIO;
+        }
+
+        public void SetFileIO(IFileIO fileIO)
+        {
+            _fileIO = fileIO;
+        }
+
+        public IAllocationTable GetAllocationTable()
+        {
+            return _allocationTable;
+        }
+
+        public void SetAllocationTable(IAllocationTable allocationTable)
+        {
+            _allocationTable = allocationTable;
+        }
+
+        public IBlockSpaceContainer GetBlockSpaceContainer()
+        {
+            return _blockSpaceContainer;
+        }
+
+        public void SetBlockSpaceContainer(IBlockSpaceContainer blockSpaceContainer)
+        {
+            _blockSpaceContainer = blockSpaceContainer;
+        }
+        #endregion
     }
 }

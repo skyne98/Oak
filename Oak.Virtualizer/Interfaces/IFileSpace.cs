@@ -8,6 +8,12 @@ namespace Oak.Virtualizer.Interfaces
 {
     public interface IFileSpace
     {
+        IFileIO GetFileIO();
+        void SetFileIO(IFileIO fileIO);
+        IAllocationTable GetAllocationTable();
+        void SetAllocationTable(IAllocationTable allocationTable);
+        IBlockSpaceContainer GetBlockSpaceContainer();
+        void SetBlockSpaceContainer(IBlockSpaceContainer blockSpaceContainer);
         void WriteByte(long position, byte value);
         byte ReadByte(long position);
         ISegment AllocateSegment(IBlockSpace blockSpace);

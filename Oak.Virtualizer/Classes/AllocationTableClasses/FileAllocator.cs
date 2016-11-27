@@ -63,7 +63,7 @@ namespace Oak.Virtualizer.Classes.AllocationTableClasses
         }
         ISegment AllocateNew(IBlockSpace blockSpace, FileStream fileStream)
         {
-            int segmentSize = FileStreamHelper.GetIntAtPosition(1, fileStream);
+            int segmentSize = FileStreamHelper.GetIntAtPosition(1, fileStream) + FileSpace.SEGMENT_HEADER_LENGTH;
             long fileStreamLength = fileStream.Length;
 
             ISegment segment = new Segment((fileStreamLength - FileSpace.FILE_HEADER_LENGTH) / segmentSize, 0);
@@ -71,7 +71,7 @@ namespace Oak.Virtualizer.Classes.AllocationTableClasses
             FileStreamHelper.SetBoolAtPosition(fileStreamLength, true, fileStream);
             FileStreamHelper.SetLongAtPosition(fileStreamLength + 1, blockSpace.GetID(), fileStream);
 
-            for (int i = 0; i < segmentSize; i++)
+            for (int i = 0; i < segmentSize - FileSpace.SEGMENT_HEADER_LENGTH; i++)
             {
                 FileStreamHelper.SetBoolAtPosition(fileStreamLength + FileSpace.SEGMENT_HEADER_LENGTH + i, false, fileStream);
             }

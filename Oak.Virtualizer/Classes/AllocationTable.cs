@@ -41,5 +41,47 @@ namespace Oak.Virtualizer.Classes
         {
             _fileUnallocator.UnallocateSegment(segment, _fileIO.GetFileStream());
         }
+
+        #region Abstract Getters/Setters
+        public IAllocationTablePositionConverter GetPositionConverter()
+        {
+            return _allocationTablePositionConverter;
+        }
+
+        public void SetPositionConverter(IAllocationTablePositionConverter allocationTablePositionConverter)
+        {
+            _allocationTablePositionConverter = allocationTablePositionConverter;
+        }
+
+        public IAllocationTableSegmentSearcher GetSegmentSearcher()
+        {
+            return _allocationTablePositionSearcher;
+        }
+
+        public void SetSegmentSearcher(IAllocationTableSegmentSearcher allocationTableSegmentSearcher)
+        {
+            _allocationTablePositionSearcher = allocationTableSegmentSearcher;
+        }
+
+        public IFileAllocator GetFileAllocator()
+        {
+            return _fileAllocator;
+        }
+
+        public void SetFileAllocator(IFileAllocator fileAllocator)
+        {
+            _fileAllocator = fileAllocator;
+        }
+
+        public IFileUnallocator GetFileUnallocator()
+        {
+            return _fileUnallocator;
+        }
+
+        public void SetFileUnallocator(IFileUnallocator fileUnallocator)
+        {
+            _fileUnallocator = fileUnallocator;
+        }
+        #endregion
     }
 }
