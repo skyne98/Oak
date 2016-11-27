@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oak.Core", "Oak.Core\Oak.Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oak.Virtualizer", "Oak.Virtualizer\Oak.Virtualizer.csproj", "{7C464A34-EA0D-4F36-907B-D1F3A7F3F645}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oak.Virtualizer.Tests", "Oak.Virtualizer.Tests\Oak.Virtualizer.Tests.csproj", "{5A781CD1-B2DF-4FE6-A4E5-2610D7DE85DE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{7C464A34-EA0D-4F36-907B-D1F3A7F3F645}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C464A34-EA0D-4F36-907B-D1F3A7F3F645}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C464A34-EA0D-4F36-907B-D1F3A7F3F645}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A781CD1-B2DF-4FE6-A4E5-2610D7DE85DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A781CD1-B2DF-4FE6-A4E5-2610D7DE85DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A781CD1-B2DF-4FE6-A4E5-2610D7DE85DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A781CD1-B2DF-4FE6-A4E5-2610D7DE85DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
