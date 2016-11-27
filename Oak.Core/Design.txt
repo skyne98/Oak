@@ -1,0 +1,12 @@
+﻿
+TREE
+Container for loading, returning and saving the tree of nodes.
+
+PACKAGE NODE
+A node in the tree. Contains actual values. Also, contains child PackageNodes.
+Can be a name-value dictionary or an index-value array of IValue.
+
+WORKING WITH FILE
+-----------------
+PACKAGE
+-----------------

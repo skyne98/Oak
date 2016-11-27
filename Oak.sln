@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oak", "Oak\Oak.csproj", "{F05B8E59-306F-4483-9B37-8F23DF37DF70}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oak.Core", "Oak.Core\Oak.Core.csproj", "{393D9A7A-6EB6-4217-9BD0-B7516DD12BF9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oak.Virtualizer", "Oak.Virtualizer\Oak.Virtualizer.csproj", "{7C464A34-EA0D-4F36-907B-D1F3A7F3F645}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F05B8E59-306F-4483-9B37-8F23DF37DF70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F05B8E59-306F-4483-9B37-8F23DF37DF70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F05B8E59-306F-4483-9B37-8F23DF37DF70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F05B8E59-306F-4483-9B37-8F23DF37DF70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{393D9A7A-6EB6-4217-9BD0-B7516DD12BF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{393D9A7A-6EB6-4217-9BD0-B7516DD12BF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{393D9A7A-6EB6-4217-9BD0-B7516DD12BF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{393D9A7A-6EB6-4217-9BD0-B7516DD12BF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C464A34-EA0D-4F36-907B-D1F3A7F3F645}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C464A34-EA0D-4F36-907B-D1F3A7F3F645}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C464A34-EA0D-4F36-907B-D1F3A7F3F645}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C464A34-EA0D-4F36-907B-D1F3A7F3F645}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
