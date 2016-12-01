@@ -60,9 +60,6 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="AllocationTable\AllocationTableFileAllocatorTests.cs" />
-    <Compile Include="AllocationTable\AllocationTableSegmentSearcherTests.cs" />
-    <Compile Include="FileIOTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

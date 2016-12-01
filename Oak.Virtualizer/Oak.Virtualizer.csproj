@@ -40,50 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\AllocationTable.cs" />
-    <Compile Include="Classes\AllocationTableClasses\AllocationTablePositionConverter.cs" />
-    <Compile Include="Classes\AllocationTableClasses\AllocationTableSegmentSearcher.cs" />
-    <Compile Include="Classes\AllocationTableClasses\FileAllocator.cs" />
-    <Compile Include="Classes\AllocationTableClasses\FileUnallocator.cs" />
-    <Compile Include="Classes\BlockSpace.cs" />
-    <Compile Include="Classes\BlockSpaceClasses\BlockSpaceReader.cs" />
-    <Compile Include="Classes\BlockSpaceClasses\BlockSpaceWriter.cs" />
-    <Compile Include="Classes\BlockSpaceContainer.cs" />
-    <Compile Include="Classes\BlockSpaceContainerClasses\BlockSpaceAllocator.cs" />
-    <Compile Include="Classes\BlockSpaceContainerClasses\BlockSpaceGetter.cs" />
-    <Compile Include="Classes\BlockSpaceContainerClasses\BlockSpaceUnallocator.cs" />
-    <Compile Include="Classes\FileIO.cs" />
-    <Compile Include="Classes\FileIOClasses\FileReader.cs" />
-    <Compile Include="Classes\FileIOClasses\FileWriter.cs" />
-    <Compile Include="Classes\FileSpace.cs" />
-    <Compile Include="Classes\FileSpaceClasses\FileCreator.cs" />
-    <Compile Include="Classes\FileSpaceClasses\FileLoader.cs" />
-    <Compile Include="Classes\Helpers\FileStreamHelper.cs" />
-    <Compile Include="Classes\Segment.cs" />
-    <Compile Include="Interfaces\AllocationTable\IAllocationTablePositionConverter.cs" />
-    <Compile Include="Interfaces\AllocationTable\IAllocationTableSegmentSearcher.cs" />
-    <Compile Include="Interfaces\AllocationTable\IFileAllocator.cs" />
-    <Compile Include="Interfaces\AllocationTable\IFileUnallocator.cs" />
-    <Compile Include="Interfaces\BlockSpaceContainer\IBlockSpaceAllocator.cs" />
-    <Compile Include="Interfaces\BlockSpaceContainer\IBlockSpaceGetter.cs" />
-    <Compile Include="Interfaces\BlockSpaceContainer\IBlockSpaceUnallocator.cs" />
-    <Compile Include="Interfaces\BlockSpace\IBlockSpaceReader.cs" />
-    <Compile Include="Interfaces\BlockSpace\IBlockSpaceWriter.cs" />
-    <Compile Include="Interfaces\FileIO\IFileReader.cs" />
-    <Compile Include="Interfaces\FileIO\IFileWriter.cs" />
-    <Compile Include="Interfaces\FileSpace\IFileCreator.cs" />
-    <Compile Include="Interfaces\FileSpace\IFileLoader.cs" />
-    <Compile Include="Interfaces\IAllocationTable.cs" />
-    <Compile Include="Interfaces\IBlockSpace.cs" />
-    <Compile Include="Interfaces\IBlockSpaceContainer.cs" />
-    <Compile Include="Interfaces\IFileIO.cs" />
-    <Compile Include="Interfaces\IFileSpace.cs" />
-    <Compile Include="Interfaces\ISegment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Exceptions\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
