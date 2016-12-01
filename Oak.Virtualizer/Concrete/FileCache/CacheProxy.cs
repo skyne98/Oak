@@ -109,16 +109,12 @@ namespace Oak.Virtualizer.Concrete.FileCache
 
         public int ReadSegmentBlockID(int index)
         {
-            long byteToRead = FileCacheProxy.FILE_HEADER_SIZE + index * _fileProxy.GetSegmentSize() + FileCacheProxy.SEGMENT_BLOCK_ID;
-
-            return Convert.ToInt32(ReadBytes(byteToRead, 4));
+            return GetSegments().FirstOrDefault(a => a.Index == index).BlockID;
         }
 
         public bool ReadSegmentOccupied(int index)
         {
-            long byteToRead = FileCacheProxy.FILE_HEADER_SIZE + index * _fileProxy.GetSegmentSize() + FileCacheProxy.SEGMENT_OCCUPIED;
-
-            return Convert.ToBoolean(ReadBytes(byteToRead, 1));
+            return GetSegments().FirstOrDefault(a => a.Index == index).Occupied;
         }
 
         public void WriteByte(long position, byte value)
@@ -147,16 +143,18 @@ namespace Oak.Virtualizer.Concrete.FileCache
 
         public void WriteSegmentBlockID(int index, int value)
         {
-            long byteToWrite = FileCacheProxy.FILE_HEADER_SIZE + index * _fileProxy.GetSegmentSize() + FileCacheProxy.SEGMENT_BLOCK_ID;
+            long byteToWrite = FileCacheProxy.FILE_HEADER_SIZE + index * _fileProxy.GetSegmentSizeWithHeader() + FileCacheProxy.SEGMENT_BLOCK_ID;
 
-            WriteBytes(byteToWrite, BitConverter.GetBytes(value));
+            _segments.Find(a => a.Index == index).BlockID = value;
+            _fileProxy.WriteBytes(byteToWrite, BitConverter.GetBytes(value));
         }
 
         public void WriteSegmentOccupied(int index, bool value)
         {
-            long byteToWrite = FileCacheProxy.FILE_HEADER_SIZE + index * _fileProxy.GetSegmentSize() + FileCacheProxy.SEGMENT_OCCUPIED;
+            long byteToWrite = FileCacheProxy.FILE_HEADER_SIZE + index * _fileProxy.GetSegmentSizeWithHeader() + FileCacheProxy.SEGMENT_OCCUPIED;
 
-            WriteBytes(byteToWrite, BitConverter.GetBytes(value));
+            _segments.Find(a => a.Index == index).Occupied = value;
+            _fileProxy.WriteBytes(byteToWrite, BitConverter.GetBytes(value));
         }
 
         public void Flush()

@@ -11,12 +11,12 @@ namespace Oak.Core.Classes
     {
         public ITreePackage DeserializePackage(byte[] byteArray)
         {
-            
+            return null;
         }
 
         public byte[] SerializePackage(ITreePackage rootPackage, IByteCompressor compressor = null)
         {
-            
+            return null;
         }
     }
 }

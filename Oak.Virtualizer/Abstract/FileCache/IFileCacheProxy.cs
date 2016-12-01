@@ -44,6 +44,8 @@ namespace Oak.Virtualizer.Abstract.FileCache
         Segment[] GetSegments();
         IEnumerable<Segment> GetSegmentsEnumerator();
         int GetSegmentsCount();
+        long GetSegmentSize();
+        long GetSegmentSizeWithHeader();
 
         Block[] GetBlocks(BlockFileConverter blockFileConverter);
         IEnumerable<Block> GetBlocksEnumerator(BlockFileConverter blockFileConverter);
@@ -51,6 +53,8 @@ namespace Oak.Virtualizer.Abstract.FileCache
         Block AllocateBlock(int id, BlockFileConverter blockFileConverter);
         void DeallocateBlock(Block block);
 
+        Segment AllocateSegmentForBlock(Block block);
+        void DeallocateSegmentFromBlock(Block block);
         Segment AllocateAndAppendSegment(bool occupied, int id);
         Segment AllocateAndAppendSegment(bool occupied, int id, long startPosition);
 

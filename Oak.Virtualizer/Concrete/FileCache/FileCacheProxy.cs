@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Oak.Virtualizer.Concrete.FileCache
 {
-    internal class FileCacheProxy : IFileCacheProxy
+    internal class FileCacheProxy : IFileCacheProxy, IDisposable
     {
         public const int FILE_HEADER_SIZE = 9;
         public const int SEGMENT_HEADER_SIZE = 17;
@@ -24,20 +24,32 @@ namespace Oak.Virtualizer.Concrete.FileCache
         //Factory method
         public static FileCacheProxy Create(IFileProxy fileProxy, ICacheProxy cacheProxy)
         {
-            return new FileCacheProxy(fileProxy, cacheProxy);
+            FileCacheProxy fileCacheProxy = new FileCacheProxy();
+
+            fileCacheProxy.Load(fileProxy, cacheProxy);
+
+            return fileCacheProxy;
         }
-        public static FileCacheProxy Create(string filePath)
+        public static FileCacheProxy Create(string filePath, BlockFileConverter blockFileConverter)
         {
-            //TODO: Add cache proxy
-            return new FileCacheProxy(new FileProxy(filePath), null);
+            FileCacheProxy fileCacheProxy = new FileCacheProxy();
+
+            IFileProxy fileProxy = new FileProxy(filePath);
+            ICacheProxy cacheProxy = new CacheProxy(fileProxy, fileCacheProxy, blockFileConverter);
+
+            fileCacheProxy.Load(fileProxy, cacheProxy);
+
+            return fileCacheProxy;
         }
 
         //Non-statics
-        private FileCacheProxy(IFileProxy fileProxy, ICacheProxy cacheProxy)
+        //TODO: Somehow get rid of "Load"
+        public void Load(IFileProxy fileProxy, ICacheProxy cacheProxy)
         {
             _fileProxy = fileProxy;
             _cacheProxy = cacheProxy;
         }
+
         public bool UseCache
         {
             get
@@ -166,6 +178,56 @@ namespace Oak.Virtualizer.Concrete.FileCache
         public void DeallocateBlock(Block block)
         {
             _cacheProxy.DeallocateBlock(block.GetId());
+        }
+
+        public long GetSegmentSize()
+        {
+            return _fileProxy.GetSegmentSize();
+        }
+
+        public long GetSegmentSizeWithHeader()
+        {
+            return _fileProxy.GetSegmentSizeWithHeader();
+        }
+
+        public Segment AllocateSegmentForBlock(Block block)
+        {
+            Segment blockLastSegment = GetSegments().LastOrDefault(a => a.Occupied && a.BlockID == block.GetId());
+
+            int lastIndex = -1;
+            if (blockLastSegment != null)
+            {
+                lastIndex = blockLastSegment.Index;
+            }
+
+            Segment firstAvailableSegment = GetSegments().Where(a => a.Index > lastIndex).FirstOrDefault(a => a.Occupied == false);
+
+            if (firstAvailableSegment == null)
+            {
+                return AllocateAndAppendSegment(true, block.GetId());
+            }
+
+            _cacheProxy.WriteSegmentOccupied(firstAvailableSegment.Index, true);
+            _cacheProxy.WriteSegmentBlockID(firstAvailableSegment.Index, block.GetId());
+
+            return firstAvailableSegment;
+        }
+
+        public void Dispose()
+        {
+            (_fileProxy as IDisposable).Dispose();
+        }
+
+        public void DeallocateSegmentFromBlock(Block block)
+        {
+            Segment lastSegment = GetSegments().LastOrDefault(a => a.Occupied && a.BlockID == block.GetId());
+
+            if (lastSegment == null)
+            {
+                return;
+            }
+
+            WriteSegmentOccupied(lastSegment.Index, false);
         }
     }
 }

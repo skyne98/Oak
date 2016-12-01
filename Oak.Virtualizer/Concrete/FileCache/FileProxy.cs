@@ -20,6 +20,8 @@ namespace Oak.Virtualizer.Concrete.FileCache
         public FileProxy(string filePath)
         {
             _fileStream = new FileStream(filePath, FileMode.Open, FileAccess.ReadWrite);
+            _compressionIndex = ReadByte(0);
+            _segmentSize = BitConverter.ToInt64(ReadBytes(1, 8), 0);
         }
 
         public Segment AllocateAndAppendSegment(bool occupied, int id)
@@ -41,20 +43,20 @@ namespace Oak.Virtualizer.Concrete.FileCache
             long segmentByte = _fileStream.Length;
 
             //Write index
-            _fileStream.Seek(segmentByte + FileCacheProxy.SEGMENT_INDEX, SeekOrigin.Begin);
-            _fileStream.Write(BitConverter.GetBytes(index), 0, 4);
+            long indexPosition = segmentByte + FileCacheProxy.SEGMENT_INDEX;
+            WriteBytes(indexPosition, BitConverter.GetBytes(index));
 
             //Write occupied
-            _fileStream.Seek(segmentByte + FileCacheProxy.SEGMENT_OCCUPIED, SeekOrigin.Begin);
-            _fileStream.Write(BitConverter.GetBytes(occupied), 0, 1);
+            long occupiedPosition = segmentByte + FileCacheProxy.SEGMENT_OCCUPIED;
+            WriteBytes(occupiedPosition, BitConverter.GetBytes(occupied));
 
             //Write blockId
-            _fileStream.Seek(segmentByte + FileCacheProxy.SEGMENT_BLOCK_ID, SeekOrigin.Begin);
-            _fileStream.Write(BitConverter.GetBytes(id), 0, 4);
+            long blockIdPosition = segmentByte + FileCacheProxy.SEGMENT_BLOCK_ID;
+            WriteBytes(blockIdPosition, BitConverter.GetBytes(id));
 
             //Write startPosition
-            _fileStream.Seek(segmentByte + FileCacheProxy.SEGMENT_START_POSITION, SeekOrigin.Begin);
-            _fileStream.Write(BitConverter.GetBytes(startPosition), 0, 8);
+            long startPositionPosition = segmentByte + FileCacheProxy.SEGMENT_START_POSITION;
+            WriteBytes(startPositionPosition, BitConverter.GetBytes(startPosition));
 
             //Fill with zeros
             byte[] bytes = new byte[GetSegmentSize()];
@@ -63,8 +65,8 @@ namespace Oak.Virtualizer.Concrete.FileCache
                 bytes[i] = 0;
             }
 
-            _fileStream.Seek(segmentByte + FileCacheProxy.SEGMENT_HEADER_SIZE, SeekOrigin.Begin);
-            _fileStream.Write(bytes, 0, bytes.Length);
+            long zerosPosition = segmentByte + FileCacheProxy.SEGMENT_HEADER_SIZE;
+            WriteBytes(zerosPosition, bytes);
 
             //Instantiate a segment
             Segment segment = new Segment();
@@ -111,13 +113,16 @@ namespace Oak.Virtualizer.Concrete.FileCache
 
             foreach (var segment in GetSegmentsEnumerator())
             {
-                int blockId = segment.BlockID;
-                if (!blocks.Contains(blockId))
+                if (segment.Occupied)
                 {
-                    blocks.Add(blockId);
+                    int blockId = segment.BlockID;
+                    if (!blocks.Contains(blockId))
+                    {
+                        blocks.Add(blockId);
 
-                    Block block = new Block(blockId, fileCacheProxy, blockFileConverter);
-                    yield return block;
+                        Block block = new Block(blockId, fileCacheProxy, blockFileConverter);
+                        yield return block;
+                    }
                 }
             }
         }
@@ -153,8 +158,8 @@ namespace Oak.Virtualizer.Concrete.FileCache
                 Segment segment = new Segment();
                 segment.Index = i;
                 segment.Occupied = Convert.ToBoolean(ReadByte(segmentByteStart + FileCacheProxy.SEGMENT_OCCUPIED));
-                segment.BlockID = Convert.ToInt32(ReadBytes(segmentByteStart + FileCacheProxy.SEGMENT_BLOCK_ID, 4));
-                segment.StartPosition = Convert.ToInt64(ReadBytes(segmentByteStart + FileCacheProxy.SEGMENT_START_POSITION, 8));
+                segment.BlockID = BitConverter.ToInt32(ReadBytes(segmentByteStart + FileCacheProxy.SEGMENT_BLOCK_ID, 4), 0);
+                segment.StartPosition = BitConverter.ToInt64(ReadBytes(segmentByteStart + FileCacheProxy.SEGMENT_START_POSITION, 8), 0);
 
                 yield return segment;
             }
@@ -183,7 +188,7 @@ namespace Oak.Virtualizer.Concrete.FileCache
         {
             long byteToRead = FileCacheProxy.FILE_HEADER_SIZE + index * GetSegmentSize() + FileCacheProxy.SEGMENT_BLOCK_ID;
 
-            return Convert.ToInt32(ReadBytes(byteToRead, 4));
+            return BitConverter.ToInt32(ReadBytes(byteToRead, 4), 0);
         }
 
         public bool ReadSegmentOccupied(int index)
