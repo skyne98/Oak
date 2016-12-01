@@ -40,6 +40,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\FileCache\ICacheProxy.cs" />
+    <Compile Include="Abstract\FileCache\IFileCacheProxy.cs" />
+    <Compile Include="Abstract\FileCache\IFileProxy.cs" />
+    <Compile Include="Concrete\Block.cs" />
+    <Compile Include="Concrete\BlockFileConverter.cs" />
+    <Compile Include="Concrete\FileCache\CacheProxy.cs" />
+    <Compile Include="Concrete\FileCache\FileCacheProxy.cs" />
+    <Compile Include="Concrete\FileCache\FileProxy.cs" />
+    <Compile Include="Concrete\Segment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
