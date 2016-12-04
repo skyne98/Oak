@@ -1,4 +1,6 @@
+<p align="center">
 ![Logo](http://i.imgur.com/b6U8C1T.png)
+</p>
 
 <p align="center">
 <b><a href="#overview">Overview</a></b>
@@ -8,8 +10,6 @@
 <b><a href="#installation">Installation</a></b>
 |
 <b><a href="#updating">Updating</a></b>
-|
-<b><a href="#setup">Setup</a></b>
 |
 <b><a href="#structure">Structure</a></b>
 |
@@ -21,17 +21,14 @@
 
 ## Overview
 
-The primary goal is to increase CLI productivity on OS X, though many scripts run just fine on any POSIX implementation and it is easy to build environment again by running just the [installation command](#oneliner) of one-liner.
+The primary goal is to provide .NET developers the tools to use files as run-time data storage, allowing them to exceed the amount of RAM on the particular machine, on which their program is running. The data can be stored (and manipulated) in file-based arrays, lists, queues, dictionaries and trees.
 
-My primary OS is OS X (10.10.x) and some of these configurations are tuned to work on that platform. The bash files are more generic and friendly toward other Unix-based operating systems.
+Also it gives possibilities to split file into dynamically resizable blocks, to maintain different dynamic data structures in one file, which makes the existance of Oak.Core possible.
 
 <p align="right"><a href="#top">:arrow_up:</a></p>
 
 ## Features
 
-- **OS X** Yosemite (MacBook, Retina 12-inch, Early 2015)
-- **Terminal.app** (Full-screen)
-- **Solarized** ([base 16](https://github.com/chriskempson/base16))
-- **Tmux** 1.9a
-- **Zsh** 5.0.5
-- **Vim** (7.4 Huge +clipboard +lua)
+- **Scalable** Supported amounts of data up to 1 Tb
+- **Effective** 
+- **Simple** 
