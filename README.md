@@ -1,5 +1,5 @@
 <p align="center">
-![Logo](http://i.imgur.com/b6U8C1T.png)
+<a name="top" href="https://github.com/Skyne98/Oak"><img src="http://i.imgur.com/b6U8C1T.png"></a>
 </p>
 
 <p align="center">
@@ -30,5 +30,5 @@ Also it gives possibilities to split file into dynamically resizable blocks, to 
 ## Features
 
 - **Scalable** Supported amounts of data up to 1 Tb
-- **Effective** 
-- **Simple** 
+- **Effective** Read/Write speeds, that make run-time usage possible
+- **Simple** Easy to learn and start working with
