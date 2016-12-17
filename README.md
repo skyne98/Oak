@@ -23,12 +23,12 @@
 
 The primary goal is to provide .NET developers the tools to use files as run-time data storage, allowing them to exceed the amount of RAM on the particular machine, on which their program is running. The data can be stored (and manipulated) in file-based arrays, lists, queues, dictionaries and trees.
 
-Also it gives possibilities to split file into dynamically resizable blocks, to maintain different dynamic data structures in one file, which makes the existance of Oak.Core possible.
+Also it gives possibilities to split file into dynamically resizable blocks, to maintain different dynamic data structures in one file, which makes the existence of Oak.Core possible.
 
 <p align="right"><a href="#top">:arrow_up:</a></p>
 
 ## Features
 
-- **Scalable** Supported amounts of data up to 1 Tb
+- **Scalable**  Supported amounts of data up to 1 Tb
 - **Effective** Read/Write speeds, that make run-time usage possible
-- **Simple** Easy to learn and start working with
+- **Simple**    Easy to learn and start working with
