@@ -29,6 +29,6 @@ Also it gives possibilities to split file into dynamically resizable blocks, to 
 
 ## Features
 
-- **Scalable** - Supported amounts of data up to 1 Tb
-- **Effective** - Read/Write speeds, that make run-time usage possible
-- **Simple** - Easy to learn and start working with
+- **Scalable** - supported amounts of data up to 1 Tb.
+- **Effective** - read/write speeds, that make run-time usage possible.
+- **Simple** - easy to learn and start working with.
